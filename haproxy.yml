@@ -6,3 +6,21 @@
      - copy: 
           dest: "/var/www/html/index.html"
           content: "hello this is my web page thank you for visiting"
+     - replace:
+           path: "/etc/httpd/conf/httpd.conf"
+           regexp: " AllowOverridde None"
+           replace: "AllowOverride AuthConfig"
+
+     - copy: 
+          dest: "/var/www/html/.htaccess"
+          src: ".htaccess"
+
+     - package: 
+          name: "python36"
+     - htpasswd:
+          path: "/etc/www.passwd"
+          name: "saloni"
+          password: "redhat"
+     - service: 
+          name: "httpd"
+          state: restarted 
