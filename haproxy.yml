@@ -1,0 +1,8 @@
+ - hosts: all
+   tasks:
+     - package:
+         name: "httpd"
+         state: present
+     - copy: 
+          dest: "/var/www/html/index.html"
+          content: "hello this is my web page thank you for visiting"
